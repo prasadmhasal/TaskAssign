@@ -78,10 +78,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\css\Style.css" />
+    <Content Include="Admin\Assign_Task.aspx" />
     <Content Include="Admin\dashbord.aspx" />
     <Content Include="Admin\js\script.js" />
+    <Content Include="Admin\TaskReview.aspx" />
     <Content Include="Login\login.aspx" />
     <Content Include="Login\Resgistration.aspx" />
+    <Content Include="User\css\Style.css" />
+    <Content Include="User\js\script.js" />
+    <Content Include="User\Userhome.aspx" />
+    <Content Include="User\UserTask.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -92,12 +98,26 @@
     <Compile Include="Admin\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Assign_Task.aspx.cs">
+      <DependentUpon>Assign_Task.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Assign_Task.aspx.designer.cs">
+      <DependentUpon>Assign_Task.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\dashbord.aspx.cs">
       <DependentUpon>dashbord.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\dashbord.aspx.designer.cs">
       <DependentUpon>dashbord.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TaskReview.aspx.cs">
+      <DependentUpon>TaskReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TaskReview.aspx.designer.cs">
+      <DependentUpon>TaskReview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -114,10 +134,32 @@
       <DependentUpon>Resgistration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\User.Master.cs">
+      <DependentUpon>User.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\User.Master.designer.cs">
+      <DependentUpon>User.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\Userhome.aspx.cs">
+      <DependentUpon>Userhome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Userhome.aspx.designer.cs">
+      <DependentUpon>Userhome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserTask.aspx.cs">
+      <DependentUpon>UserTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserTask.aspx.designer.cs">
+      <DependentUpon>UserTask.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Admin.Master" />
     <None Include="packages.config" />
+    <Content Include="User\User.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

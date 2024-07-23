@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TaskAssign.Admin
+namespace TaskAssign.User
 {
-    public partial class dashbord1 : System.Web.UI.Page
+    public partial class User : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

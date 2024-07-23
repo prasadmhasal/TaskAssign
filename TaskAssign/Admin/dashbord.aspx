@@ -1,208 +1,189 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="dashbord.aspx.cs" Inherits="TaskAssign.Admin.dashbord" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="dashbord.aspx.cs" Inherits="TaskAssign.Admin.dashbord1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-        .signup {
-            width: 100%;
-            padding: 50px 0;
-            background: #f2f2f2;
+        canvas {
+            max-width: 100%;
+            height:200px;
+        }
+        .flex {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto
         }
 
-        .container {
-            max-width: 1170px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .signup-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .signup-form, .signup-image {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .signup-form {
-    background: #fff;
-    padding: 40px 60px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border-radius:20px;
-}
-
-        .form-title {
-            margin-bottom: 30px;
-            font-size: 30px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-            .form-group label {
-                position: absolute;
-                top: 50%;
-                left: 10px;
-                transform: translateY(-50%);
-                color: #333;
+        @media (max-width:991.98px) {
+            .padding1 {
+                padding: 1.5rem
             }
+        }
 
-            .form-group svg {
-                position: absolute;
-                top: 50%;
-                left: 10px;
-                transform: translateY(-50%);
-                fill: #333;
+        @media (max-width:767.98px) {
+            .padding1 {
+                padding: 1rem
             }
-
-        .form-control {
-            width: 100%;
-            padding: 10px 20px;
-            padding-left: 40px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            background: #f7f7f7;
-            color: #333;
-            transition: all 0.3s;
         }
 
-            .form-control:focus {
-                border-color: #333;
-                background: #fff;
-            }
-
-        .form-check {
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .form-check-label {
-            display: inline-block;
-            font-size: 14px;
-            color: #333;
-        }
-
-        .term-service {
-            color: #333;
-            text-decoration: underline;
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            background: #333;
+     
+        .order-card {
+            /* background:#FAFAFA; */
             color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s;
         }
 
-            .form-submit:hover {
-                background: #555;
-            }
-
-        .signup-image {
-            text-align: center;
+        .bg-c-blue {
+            background: linear-gradient(to bottom right, rgba(255, 0, 0, 0.3), rgba(0, 0, 255, 0.3))
         }
 
-            .signup-image figure {
-                margin-bottom: 30px;
-            }
-
-            .signup-image img {
-                max-width: 100%;
-                height: auto;
-            }
-
-        .signup-image-link {
-            color: #333;
-            text-decoration: none;
-            font-size: 16px;
-            text-align: center;
-            display: inline-block;
-            margin-top: 20px;
+        .bg-c-green {
+            background: linear-gradient( to bottom right,#fcdf8a, #f38381);
         }
 
-            .signup-image-link:hover {
-                text-decoration: underline;
+        .bg-c-yellow {
+            background: linear-gradient( to bottom right,#f2d50f, #da0641);
+        }
+
+        .bg-c-pink {
+            background: linear-gradient(to bottom right, #fad961, #f76b1c);
+        }
+
+
+        .card {
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+            box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+            border: none;
+            margin-bottom: 30px;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .card .card-block {
+                padding: 25px;
             }
+
+        .order-card i {
+            font-size: 26px;
+        }
+
+        .f-left {
+            float: left;
+        }
+
+        .f-right {
+            float: right;
+        }
     </style>
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/multiselect/2.2.15/css/multi-select.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/multiselect/2.2.15/js/jquery.multi-select.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#<%= ddlUser_name.ClientID %>').multiSelect({
-                selectableHeader: "<input type='checkbox' id='selectAll' /> Select All",
-                selectionHeader: "<div>Selected Users</div>"
-            });
-
-            $('#selectAll').on('click', function () {
-                if (this.checked) {
-                    $('#<%= ddlUser_name.ClientID %>').multiSelect('select_all');
-                } else {
-                    $('#<%= ddlUser_name.ClientID %>').multiSelect('deselect_all');
-                }
-            });
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  <div class="signup">
-        <div class="container">
-            <div class="signup-content">
-                <div class="signup-form">
-                    <h2 class="form-title">Task Assign</h2>
-                    <div class="form-group">
-                        <label for="name">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                            </svg></label>
-                        <asp:TextBox runat="server" ID="TextBox1" CssClass="form-control" Placeholder="Task Name" />
+       <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-3 col-xl-3 mb-4">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Sells</h6>
+                        <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>
+                           </span></h2>
+                        <p class="m-b-0">Sells<span class="f-right"><asp:Label ID="Label6" runat="server" Text="Label"></asp:Label></span></p>
                     </div>
-                   
-                   
-                    <div class="form-group">
-                        <label for="email">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                            </svg></label>
-                        <asp:DropDownList ID="ddlbatch" runat="server" CssClass="form-control" AutoPostBack="True"  OnSelectedIndexChanged="ddlBatch_SelectedIndexChanged" >
-                        </asp:DropDownList>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="your_pass">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2" />
-                            </svg>
-                        </label>
-                        <asp:DropDownList ID="ddlUser_name" runat="server" CssClass="form-control"  AutoPostBack="True" OnSelectedIndexChanged="ddlUser_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </div>   
-                    <div class="form-group">
-                        <label for="email">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                            </svg></label>
-                        <%--<asp:TextBox runat="server" ID="TextBox1" CssClass="form-control" Placeholder="Your Email" TextMode="Email" />--%>
-                        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" Placeholder="Attachment" />
-                    </div>
-                    <div class="form-group">
-                        <asp:Button runat="server" ID="Button" CssClass="form-submit" Text="Assign" OnClick="Button1_Click" />
-                    </div>
-
                 </div>
-               
+            </div>
+            
+            <div class="col-md-3 col-xl-3 mb-4">
+                <div class="card bg-c-green order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Orders Placed</h6>
+                        <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span><asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></span></h2>
+                        <p class="m-b-0">Orders Placed<span class="f-right"><asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-xl-3 mb-4">
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Course Count</h6>
+                        <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>
+                            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></span></h2>
+                        <p class="m-b-0">Course Count<span class="f-right"> <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-xl-3 mb-4">
+                <div class="card bg-c-pink order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">User Account</h6>
+                        <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span><asp:Label ID="Label7" runat="server" Text="Label"></asp:Label></span></h2>
+                        <p class="m-b-0">User Account<span class="f-right"><asp:Label ID="Label8" runat="server" Text="Label"></asp:Label></span></p>
+                    </div>
+                </div>
             </div>
         </div>
-    
-</div>
+
+        <div class="page-content page-container container-fluid" id="page-content">
+            <div class="padding1 w-100">
+                <div class="row">
+                    <div class="container-fluid d-flex justify-content-center">
+                        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 w-100">
+                            <div class="card1">
+                                <div class="card-header card-header1">Student chart</div>
+                                <div class="card-body">
+                                    <canvas id="myPolarAreaChart" class="chartjs-render-monitor"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+               
+    <script>
+        $(document).ready(function() {
+            const data = {
+                labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [11, 16, 7, 3, 14],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(75, 192, 192)',
+                        'rgb(255, 205, 86)',
+                        'rgb(201, 203, 207)',
+                        'rgb(54, 162, 235)'
+                    ],
+                    borderColor: 'rgba(0, 0, 0, 0.2)',
+                    borderWidth: 1
+                }]
+            };
+
+            const config = {
+                type: 'polarArea',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                           
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const ctx = document.getElementById('myPolarAreaChart').getContext('2d');
+            new Chart(ctx, config);
+        });
+    </script>
+
+
 </asp:Content>
