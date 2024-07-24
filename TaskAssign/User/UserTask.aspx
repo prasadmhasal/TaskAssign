@@ -103,7 +103,7 @@
     border-color: #bd2130;
 }
 
-}
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -140,9 +140,10 @@
                     </Columns>
                    
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Task %>" SelectCommand="SELECT * FROM [Task] WHERE ([Task_User] = @Task_User)">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Task %>" SelectCommand="SELECT * FROM [Task] WHERE ([Task_User] = @Task_User)  ">
                     <SelectParameters>
                         <asp:SessionParameter Name="Task_User" SessionField="User_name" Type="String" />
+                        
                     </SelectParameters>
                 </asp:SqlDataSource>
             </div>

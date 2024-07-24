@@ -44,14 +44,14 @@
                         <span class="links_name">User Task </span>
                     </asp:HyperLink>
                    
-                    <span class="tooltip">User</span>
+                    <span class="tooltip">User Task</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/User/Reject_Task.aspx">
                         <i class="bx bx-chat"></i>
-                        <span class="links_name">Messages</span>
-                    </a>
-                    <span class="tooltip">Messages</span>
+                        <span class="links_name">Reject Task</span>
+                     </asp:HyperLink>
+                    <span class="tooltip">Reject Task</span>
                 </li>
                 <li>
                     <a href="#">

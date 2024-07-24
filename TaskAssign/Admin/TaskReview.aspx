@@ -109,44 +109,55 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <div class="container mt-5">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                   Task LIst
-                </div>
-                <div class="card-body">
-                    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Task_id" OnRowCommand="GridView_RowCommand" DataSourceID="SqlDataSource1" CssClass="table table-striped table-bordered">
-                        <Columns>
-                            <asp:BoundField DataField="Task_id" HeaderText="Task_id" SortExpression="Task_id" InsertVisible="False" ReadOnly="True" />
-                            <asp:BoundField DataField="Task_name" HeaderText="Task_name" SortExpression="Task_name" />
-                            <asp:BoundField DataField="Task_User" HeaderText="Task_User" SortExpression="Task_User" />
-                            
-                            <asp:TemplateField HeaderText="Task solution">
-                                <ItemTemplate>
-                                    <asp:Button ID="DownloadButton" runat="server" Text="Download" CommandName="DownloadFile" CommandArgument='<%# Eval("Task_solution") %>' CssClass="btn btn-sm btn-success " />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="Task_status" HeaderText="Task_status" SortExpression="Task_status" />
-                            <asp:BoundField DataField="Tasksubmit_date" HeaderText="Tasksubmit_date" SortExpression="Tasksubmit_date" />
-                            <asp:BoundField DataField="Task_date" HeaderText="Task_date" SortExpression="Task_date" />
-                            <asp:TemplateField HeaderText="Actions"  >
-                                <ItemTemplate >
-                                    <div style="display:flex;">
-                                    <asp:Button ID="Reject_Task" runat="server" Text="Reject" CssClass="btn btn-danger mt-3 " CommandName="Reject_Task" CommandArgument='<%# Eval("Task_id") %>'/>
-                                    <asp:Button ID="Approve_Task" runat="server" Text="Approve" CssClass="btn btn-success mt-3 " CommandName="Approve_Task" CommandArgument='<%# Eval("Task_id") %>'/>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                        <PagerStyle CssClass="pagination" />
-                    </asp:GridView>
+    <div class="container mt-5 overflow-scroll">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Task LIst
+                    </div>
+                    <div class="card-body">
+                        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Task_id" OnRowCommand="GridView_RowCommand" DataSourceID="SqlDataSource1" CssClass="table table-striped table-bordered">
+                            <Columns>
+                                <asp:BoundField DataField="Task_id" HeaderText="Task_id" SortExpression="Task_id" InsertVisible="False" ReadOnly="True" />
+                                <asp:BoundField DataField="Task_name" HeaderText="Task_name" SortExpression="Task_name" />
+                                <asp:BoundField DataField="Task_User" HeaderText="Task_User" SortExpression="Task_User" />
+
+                                <asp:TemplateField HeaderText="Task solution">
+                                    <ItemTemplate>
+                                        <asp:Button ID="DownloadButton" runat="server" Text="Download" CommandName="DownloadFile" CommandArgument='<%# Eval("Task_solution") %>' CssClass="btn btn-sm btn-success" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Task_status" HeaderText="Task_status" SortExpression="Task_status" />
+                                <asp:BoundField DataField="Tasksubmit_date" HeaderText="Tasksubmit_date" SortExpression="Tasksubmit_date" />
+                                <asp:BoundField DataField="Task_date" HeaderText="Task_date" SortExpression="Task_date" />
+
+                                <asp:TemplateField HeaderText="Task Feedback">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="Task_Feedback" runat="server" Text='' TextMode="MultiLine" Rows="3" CssClass="form-control" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Actions">
+                                    <ItemTemplate>
+                                        <div style="display: flex;">
+                                            <asp:Button ID="Reject_Task" runat="server" Text="Reject" CssClass="btn btn-danger mt-3" CommandName="Reject_Task" CommandArgument='<%# Container.DataItemIndex %>' />
+                                            <asp:Button ID="Approve_Task" runat="server" Text="Approve" CssClass="btn btn-success mt-3" CommandName="Approve_Task" CommandArgument='<%# Container.DataItemIndex %>' />
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                            <PagerStyle CssClass="pagination" />
+                        </asp:GridView>
+
+                     
+                       
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
@@ -156,4 +167,6 @@
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Task %>"  SelectCommand="SELECT [Task_id], [Task_name], [Task_User], [Task_solution], [Task_status], [Tasksubmit_date], [Task_date] FROM [Task]">
     
 </asp:SqlDataSource>
+   
+
 </asp:Content>

@@ -43,6 +43,7 @@ namespace TaskAssign.Login
                     {
 
                         Session["User_name"] = rdr["User_name"].ToString();
+                        Session["User_id"] = rdr["User_Id"].ToString();
                        
                         Response.Write("<script>alert('login')</script>");
 

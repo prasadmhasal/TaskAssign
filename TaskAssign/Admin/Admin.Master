@@ -50,14 +50,17 @@
  <span class="links_name">Task Review</span></asp:HyperLink>
            
       
-          <span class="tooltip">Messages</span>
+          <span class="tooltip">Task Review</span>
         </li>
         <li>
-          <a href="#">
+            <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Admin/UTask_Reject.aspx">
+
             <i class="bx bx-pie-chart-alt-2"></i>
-            <span class="links_name">Analytics</span>
-          </a>
-          <span class="tooltip">Analytics</span>
+            <span class="links_name">UserTask_Reject</span>
+            </asp:HyperLink>
+        
+      
+          <span class="tooltip">UserTask_Reject</span>
         </li>
         <li>
           <a href="#">
