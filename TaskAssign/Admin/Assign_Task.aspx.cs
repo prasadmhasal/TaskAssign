@@ -123,7 +123,7 @@ namespace TaskAssign.Admin
                         {
 
                             Console.WriteLine("Data inserted successfully into Task table.");
-                            Response.Write("<script>alert('Data inserted successfully into Course_video table')</script>");
+                            Response.Write("<script>alert('Data inserted successfully ')</script>");
                         }
                         else
                         {

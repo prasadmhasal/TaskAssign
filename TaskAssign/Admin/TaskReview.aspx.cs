@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Mail;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
@@ -55,16 +57,15 @@ namespace TaskAssign.Admin
             {
                 try
                 {
-                    // Get the row index from the CommandArgument
+                    
                     int rowIndex = Convert.ToInt32(e.CommandArgument);
 
-                    // Ensure rowIndex is within the valid range
+                    
                     if (rowIndex >= 0)
                     {
                         GridViewRow row = GridView1.Rows[rowIndex];
                         int taskId = Convert.ToInt32(GridView1.DataKeys[rowIndex].Value);
 
-                        // Retrieve necessary values from the row
                         string taskName = row.Cells[1].Text; 
                         string taskUser = row.Cells[2].Text; 
                         string taskSolution = (row.FindControl("DownloadButton") as Button)?.CommandArgument;
@@ -72,10 +73,16 @@ namespace TaskAssign.Admin
                         string taskSubmitDate = row.Cells[5].Text; 
                         string taskDate = row.Cells[6].Text; 
                         string taskFeedback = (row.FindControl("Task_Feedback") as TextBox)?.Text ?? string.Empty;
-                        string taskApproveStatus = e.CommandName == "Approve_Task" ? "Approved" : "Rejected";
+                        if (int.TryParse((row.FindControl("Task_score") as TextBox)?.Text, out int taskScore))
+                        {
+                            string taskApproveStatus = e.CommandName == "Approve_Task" ? "Approved" : "Rejected";
 
-                        // Call method to execute stored procedures
-                        SaveTaskReviewAndDelete(taskId, taskName, taskUser, taskSolution, taskStatus, taskSubmitDate, taskDate, taskFeedback, taskApproveStatus);
+                            SaveTaskReviewAndDelete(taskId, taskName, taskUser, taskSolution, taskStatus, taskSubmitDate, taskDate, taskFeedback, taskScore, taskApproveStatus);
+                            string userEmail = GetUserEmail(taskUser);
+
+                            SendEmail(userEmail, taskName, taskApproveStatus);
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Email Send The User');", true);
+                        }
                     }
                     else
                     {
@@ -84,20 +91,54 @@ namespace TaskAssign.Admin
                 }
                 catch (Exception ex)
                 {
-                    // Log exception
+             
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('An error occurred: {ex.Message}');", true);
                 }
             }
         }
-
-        private void SaveTaskReviewAndDelete(int taskId, string taskName, string taskUser,string taskSolution,string taskStatus,string taskSubmitDate , string taskDate,  string taskFeedback, string taskApproveStatus)
+        private string GetUserEmail(string taskUser)
         {
-            string insertQuery = $"Exec AddTaskReview '{taskId}', '{taskName}', '{taskUser}', '{taskSolution}', '{taskStatus}', '{taskSubmitDate}', '{taskDate}', '{taskFeedback}', '{taskApproveStatus}'";
+            return Session["User_email"]?.ToString() ?? "user@example.com";
+        }
+
+        private void SendEmail(string userEmail, string taskName, string taskStatus)
+        {
+            try
+            {
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("Prasadmhasal@gmail.com");
+                    mail.To.Add(userEmail);
+                    mail.Subject = $"Task {taskStatus}: {taskName}";
+                    if (taskStatus == "Approved")
+                    {
+                        mail.Body = $"Dear User,\n\nWe are pleased to inform you that your task submission '{taskName}' has been {taskStatus}.\n\nThank you for your effort and dedication.\n\nBest regards,\n[Your Company Name]";
+                    }
+                    else if (taskStatus == "Rejected")
+                    {
+                        mail.Body = $"Dear User,\n\nWe regret to inform you that your task submission '{taskName}' has been {taskStatus}.\n\nPlease review the task requirements and try again.\n\nIf you have any questions, feel free to contact us.\n\nBest regards,\n[Your Company Name]";
+                    }
+                    mail.IsBodyHtml = false;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new NetworkCredential("prasadmhasal@gmail.com", "fxjuqdrhzmmeksyq");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+              
+            }
+        }
+
+        private void SaveTaskReviewAndDelete(int taskId, string taskName, string taskUser,string taskSolution,string taskStatus,string taskSubmitDate , string taskDate,  string taskFeedback,int taskscore, string taskApproveStatus)
+        {
+            string insertQuery = $"Exec AddTaskReview '{taskId}', '{taskName}', '{taskUser}', '{taskSolution}', '{taskStatus}', '{taskSubmitDate}', '{taskDate}', '{taskFeedback}','{taskscore}', '{taskApproveStatus}'";
             SqlCommand cmd = new SqlCommand(insertQuery, conn);
             cmd.ExecuteNonQuery();
-
-
-            // Delete data from Task
             using (SqlCommand deleteCommand = new SqlCommand("DeleteTask", conn))
                 {
                     deleteCommand.CommandType = CommandType.StoredProcedure;

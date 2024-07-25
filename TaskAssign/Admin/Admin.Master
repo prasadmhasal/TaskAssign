@@ -102,7 +102,7 @@
         </li>
       </ul>
     </div>
-    <section class="home-section overflow-auto ">
+    <section class="home-section overflow-auto">
       
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

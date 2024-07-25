@@ -114,7 +114,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
-                        Task LIst
+                        Rejected Task LIst
                     </div>
                     <div class="card-body">
                         <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="False" DataKeyNames="Task_id" DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand">

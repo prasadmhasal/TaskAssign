@@ -85,6 +85,7 @@
     <Content Include="User\css\Style.css" />
     <Content Include="User\js\script.js" />
     <Content Include="User\Reject_Task.aspx" />
+    <Content Include="User\Taskhistory.aspx" />
     <Content Include="User\Userhome.aspx" />
     <Content Include="User\UserTask.aspx" />
     <Content Include="Web.config" />
@@ -146,6 +147,13 @@
     </Compile>
     <Compile Include="User\Reject_Task.aspx.designer.cs">
       <DependentUpon>Reject_Task.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Taskhistory.aspx.cs">
+      <DependentUpon>Taskhistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Taskhistory.aspx.designer.cs">
+      <DependentUpon>Taskhistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>

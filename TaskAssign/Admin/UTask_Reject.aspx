@@ -111,7 +111,7 @@
          <div class="col-lg-12">
              <div class="card">
                  <div class="card-header bg-primary text-white">
-                     Task LIst
+                    User Rejacted  Task LIst
                  </div>
                  <div class="card-body">
                      <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="False" DataKeyNames="Task_id" DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand">
@@ -129,24 +129,19 @@
                                  </ItemTemplate>
                              </asp:TemplateField>
                              <asp:BoundField DataField="Taskapprove_status" HeaderText="Taskapprove_status" />
-                             <asp:TemplateField HeaderText="Task Score">
-                                 <ItemTemplate>
-                                     <asp:TextBox ID="Task_score" runat="server" Text=''  CssClass="form-control" />
-                                 </ItemTemplate>
-                             </asp:TemplateField>
+                            
+                                     <asp:BoundField DataField="Task_score" HeaderText="Task Score" />
+                               
                              <asp:TemplateField HeaderText="Actions">
                                  <ItemTemplate>
-                                     <asp:Button ID="Submit" runat="server" Text="Submit" CommandName="Submit" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-sm btn-success gridview-button"  />
+                                     <asp:Button ID="Approve" runat="server" Text="Approve" CommandName="Approve" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-sm btn-success gridview-button"  />
                                  </ItemTemplate>
                              </asp:TemplateField>
                          </Columns>
 
                      </asp:GridView>
-                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Task %>"  SelectCommand="SELECT * FROM [Task_review] WHERE ([Task_User] = @Task_User) AND [Taskapprove_status] = 'Resubmit'">
-                         <SelectParameters>
-                             <asp:SessionParameter Name="Task_User" SessionField="User_name" Type="String" />
-
-                         </SelectParameters>
+                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Task %>"  SelectCommand="SELECT * FROM [Task_review] WHERE   [Taskapprove_status] = 'Resubmit'">
+                     
                      </asp:SqlDataSource>
 
 

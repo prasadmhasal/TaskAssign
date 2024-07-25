@@ -41,7 +41,7 @@ namespace TaskAssign.User
                     Response.Write("<script>alert('File not found');</script>");
                 }
             }
-            else if (e.CommandName == "OnTime")
+            else if (e.CommandName == "OnTime" || e.CommandName == "Late")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 int taskId = Convert.ToInt32(GridView1.DataKeys[rowIndex].Value);
@@ -49,31 +49,32 @@ namespace TaskAssign.User
                 FileUpload fileUpload = (FileUpload)row.FindControl("FileUpload1");
                 string taskSolution = fileUpload.HasFile ? SaveFile(fileUpload) : string.Empty;
 
-                UpdateTaskStatus(taskId, taskSolution, "On Time");
-                // Hide the OnTimeButton or any other control you need to update
+               
+                string taskStatus = e.CommandName == "OnTime" ? "On Time" : "Late";
+
+                UpdateTaskStatus(taskId, taskSolution, taskStatus);
+
                 Button onTimeButton = (Button)row.FindControl("OnTimeButton");
+                Button lateButton = (Button)row.FindControl("LateButton");
+                Label statusLabel = (Label)row.FindControl("StatusLabel");
 
-                if (onTimeButton != null) onTimeButton.Visible = false;
-
-                Response.Write("<script>alert('Task_submited');</script>");
-
-            }
-            else if (e.CommandName == "Late")
-            {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                int taskId = Convert.ToInt32(GridView1.DataKeys[rowIndex].Value);
-                GridViewRow row = GridView1.Rows[rowIndex];
-                FileUpload fileUpload = (FileUpload)row.FindControl("FileUpload1");
-                string taskSolution = fileUpload.HasFile ? SaveFile(fileUpload) : string.Empty;
-                UpdateTaskStatus(taskId, taskSolution, "Late");
-                // Hide the OnTimeButton or any other control you need to update
-                Button onTimeButton = (Button)row.FindControl("LateButton");
                 if (onTimeButton != null)
-                {
                     onTimeButton.Visible = false;
-                }
-                Response.Write("<script>alert('Task_submited');</script>");
 
+                if (lateButton != null)
+                    lateButton.Visible = false;
+
+                if (statusLabel != null)
+                {
+                    statusLabel.Text = "Submitted";
+                    statusLabel.ForeColor = System.Drawing.Color.Green;
+                }
+
+             
+                Response.Write($"<script>alert('Task ID: {taskId}, Status: {taskStatus}');</script>");
+
+                
+                GridView1.DataBind();
             }
         }
 
@@ -103,7 +104,7 @@ namespace TaskAssign.User
             cmd.ExecuteNonQuery();
 
            
-            // Rebind the GridView to reflect the changes
+         
             GridView1.DataBind();
         }
 

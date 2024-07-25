@@ -25,6 +25,7 @@ namespace TaskAssign.Login
             string email, pass;
              email = Email.Text;
              pass = Pass.Text;
+           
 
             string q1 = $"exec User_login '{email} ' ,'{pass}'";
             SqlCommand cmd = new SqlCommand(q1, conn);
@@ -41,7 +42,8 @@ namespace TaskAssign.Login
 
                     if (rdr["User_email"].Equals(email) && rdr["User_pass"].Equals(pass) && rdr["User_role"].Equals("User"))
                     {
-
+                        
+                        Session["User_email"] = email;
                         Session["User_name"] = rdr["User_name"].ToString();
                         Session["User_id"] = rdr["User_Id"].ToString();
                        
