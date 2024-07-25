@@ -80,10 +80,12 @@
     <Content Include="Admin\js\script.js" />
     <Content Include="Admin\TaskReview.aspx" />
     <Content Include="Admin\UTask_Reject.aspx" />
+    <Content Include="image\gold-medal.png" />
     <Content Include="Login\login.aspx" />
     <Content Include="Login\Resgistration.aspx" />
     <Content Include="User\css\Style.css" />
     <Content Include="User\js\script.js" />
+    <Content Include="User\leaderborad.aspx" />
     <Content Include="User\Reject_Task.aspx" />
     <Content Include="User\Taskhistory.aspx" />
     <Content Include="User\Userhome.aspx" />
@@ -141,6 +143,13 @@
       <DependentUpon>Resgistration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\leaderborad.aspx.cs">
+      <DependentUpon>leaderborad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\leaderborad.aspx.designer.cs">
+      <DependentUpon>leaderborad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\Reject_Task.aspx.cs">
       <DependentUpon>Reject_Task.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -192,7 +201,6 @@
     <Folder Include="component\css\" />
     <Folder Include="component\js\" />
     <Folder Include="component\pic\" />
-    <Folder Include="image\" />
     <Folder Include="Task_File\" />
   </ItemGroup>
   <PropertyGroup>

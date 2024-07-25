@@ -62,11 +62,12 @@
                     <span class="tooltip">Task History</span>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="bx bx-folder"></i>
-                        <span class="links_name">File Manager</span>
-                    </a>
-                    <span class="tooltip">Files</span>
+                    <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/User/leaderborad.aspx">  <i class="bx bx-folder"></i>
+  <span class="links_name">Leaderbord</span></asp:HyperLink>
+                    
+                      
+                  
+                    <span class="tooltip">Leaderbord</span>
                 </li>
                 <li>
                     <a href="#">
