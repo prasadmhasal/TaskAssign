@@ -78,6 +78,7 @@
     <Content Include="Admin\Assign_Task.aspx" />
     <Content Include="Admin\dashbord.aspx" />
     <Content Include="Admin\js\script.js" />
+    <Content Include="Admin\performer.aspx" />
     <Content Include="Admin\TaskReview.aspx" />
     <Content Include="Admin\UTask_Reject.aspx" />
     <Content Include="image\gold-medal.png" />
@@ -113,6 +114,13 @@
     </Compile>
     <Compile Include="Admin\dashbord.aspx.designer.cs">
       <DependentUpon>dashbord.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\performer.aspx.cs">
+      <DependentUpon>performer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\performer.aspx.designer.cs">
+      <DependentUpon>performer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\TaskReview.aspx.cs">
       <DependentUpon>TaskReview.aspx</DependentUpon>
