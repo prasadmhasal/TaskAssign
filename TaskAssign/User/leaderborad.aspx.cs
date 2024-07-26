@@ -27,7 +27,7 @@ namespace TaskAssign.User
         {
             try
             {
-                string g1 = "Exec GetStudentRankings";
+                string g1 = "Exec GetStudentRanking";
                 SqlDataAdapter da = new SqlDataAdapter(g1, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

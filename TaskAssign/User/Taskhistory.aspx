@@ -167,7 +167,7 @@
                         <asp:ListItem Text="Monthly" Value="Monthly" />
                         <asp:ListItem Text="Yearly" Value="Yearly" />
                     </asp:DropDownList>
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="True" CssClass="grid-view-container">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="grid-view-container">
                         <Columns>
                             <asp:BoundField DataField="Task_id" HeaderText="Task ID" />
                             <asp:BoundField DataField="Task_name" HeaderText="Task Name" />

@@ -47,7 +47,7 @@ namespace TaskAssign.Admin
                 int taskId = Convert.ToInt32(GridView1.DataKeys[rowIndex].Value);
                 
                
-                UpdateTaskStatus(taskId, "Approve");
+                UpdateTaskStatus(taskId, "Approved");
 
 
 

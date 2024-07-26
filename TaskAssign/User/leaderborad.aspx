@@ -245,7 +245,11 @@ td {
     height: 2rem; 
     margin-left: 1rem;
 }
-
+.profileuser {
+    border-radius:50%;
+    height: 50px; 
+    margin-left: 1rem;
+}
     </style>
 
 </asp:Content>
@@ -260,21 +264,35 @@ td {
         <div id="leaderboard">
             <div class="ribbon"></div>
            <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped" AutoGenerateColumns="False">
-            <Columns>
-                <asp:BoundField DataField="Rank" HeaderText="#" />
-                <asp:BoundField DataField="Name" HeaderText="Name" />
-                <asp:TemplateField HeaderText="Points">
-                    <ItemTemplate>
-                        <asp:Label ID="lblPoints" runat="server" Text='<%# Eval("Points") %>' />
-                       <asp:Image ID="imgMedal" runat="server" 
-           ImageUrl="~/image/gold-medal.png" 
-           AlternateText="gold medal" 
-           CssClass="gold-medal" 
-           Visible='<%# Convert.ToInt32(Eval("Rank")) == 1 %>' />
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+    <Columns>
+        <asp:BoundField DataField="Rank" HeaderText="#" />
+         <asp:TemplateField HeaderText="Images">
+     <ItemTemplate>
+                 <asp:Image ID="imgProfile" runat="server" 
+                   ImageUrl='<%# Eval("ProfileImageUrl") %>' 
+                   AlternateText="Profile Image" 
+                   CssClass="profileuser" />
+    </ItemTemplate>
+</asp:TemplateField>
+        <asp:BoundField DataField="Name" HeaderText="Name" />
+        <asp:BoundField DataField="Points" HeaderText="Points" />
+        <asp:TemplateField HeaderText="Images">
+            <ItemTemplate>
+                <!-- Medal Image: Visible only for the top-ranked user -->
+                <asp:Image ID="imgMedal" runat="server" 
+                           ImageUrl="~/image/gold-medal.png" 
+                           AlternateText="gold medal" 
+                           CssClass="gold-medal"
+
+                           Visible='<%# Convert.ToInt32(Eval("Rank")) == 1 %>' />
+                
+                <!-- Profile Image: Always visible -->
+             
+            </ItemTemplate>
+        </asp:TemplateField>
+
+    </Columns>
+</asp:GridView>
         </div>
     </main>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
