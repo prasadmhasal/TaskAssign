@@ -94,6 +94,7 @@ namespace TaskAssign.Admin
              
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('An error occurred: {ex.Message}');", true);
                 }
+                
             }
         }
         private string GetUserEmail(string taskUser)
@@ -132,6 +133,7 @@ namespace TaskAssign.Admin
             {
               
             }
+            BindGridView();
         }
 
         private void SaveTaskReviewAndDelete(int taskId, string taskName, string taskUser,string taskSolution,string taskStatus,string taskSubmitDate , string taskDate,  string taskFeedback,int taskscore, string taskApproveStatus)

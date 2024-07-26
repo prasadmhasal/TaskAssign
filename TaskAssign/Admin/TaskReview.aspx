@@ -164,7 +164,7 @@
 
  
 
-<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Task %>"  SelectCommand="SELECT [Task_id], [Task_name], [Task_User], [Task_solution], [Task_status], [Tasksubmit_date], [Task_date] FROM [Task]">
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Task %>"  SelectCommand="SELECT [Task_id], [Task_name], [Task_User], [Task_solution], [Task_status], [Tasksubmit_date], [Task_date] FROM [Task] where [Task_solution] is not null">
     
 </asp:SqlDataSource>
    

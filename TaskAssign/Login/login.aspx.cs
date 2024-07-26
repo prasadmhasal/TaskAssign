@@ -44,6 +44,7 @@ namespace TaskAssign.Login
                     {
                         
                         Session["User_email"] = email;
+                        Session["User_image"] = rdr["User_image"].ToString();
                         Session["User_name"] = rdr["User_name"].ToString();
                         Session["User_id"] = rdr["User_Id"].ToString();
                        

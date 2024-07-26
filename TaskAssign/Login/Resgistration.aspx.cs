@@ -35,29 +35,30 @@ namespace TaskAssign.Login
             string q1 = $"exec User_re  '{name}' , '{email}','{image}','{batch}','{pass}','{role}'";
             SqlCommand cmd = new SqlCommand(q1, conn);
             cmd.ExecuteNonQuery();
+            Response.Write("<script>alert('Resgistration successfully')</script>");
             clear();
 
-            ShowSweetAlert("Good job!", "You clicked the button!", "success");
+            //ShowSweetAlert("Good job!", "You clicked the button!", "success");
         }
 
-        private void ShowSweetAlert(string title, string message, string icon)
-        {
+        //private void ShowSweetAlert(string title, string message, string icon)
+        //{
 
-            // Build the JavaScript code for SweetAlert using StringBuilder
-            StringBuilder script = new StringBuilder();
-            script.Append("<script>");
-            script.Append("$(document).ready(function() {");
-            script.Append("Swal.fire({");
-            script.AppendFormat("title: '{0}',", title);
-            script.AppendFormat("text: '{0}',", message);
-            script.AppendFormat("icon: '{0}',", icon);
-            script.Append("});");
-            script.Append("});");
-            script.Append("</script>");
+        //    // Build the JavaScript code for SweetAlert using StringBuilder
+        //    StringBuilder script = new StringBuilder();
+        //    script.Append("<script>");
+        //    script.Append("$(document).ready(function() {");
+        //    script.Append("Swal.fire({");
+        //    script.AppendFormat("title: '{0}',", title);
+        //    script.AppendFormat("text: '{0}',", message);
+        //    script.AppendFormat("icon: '{0}',", icon);
+        //    script.Append("});");
+        //    script.Append("});");
+        //    script.Append("</script>");
 
-            // Register the script with the Page using ScriptManager
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "SweetAlertScript", script.ToString(), false);
-        }
+        //    // Register the script with the Page using ScriptManager
+        //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "SweetAlertScript", script.ToString(), false);
+        //}
 
         protected void clear()
         {

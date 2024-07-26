@@ -92,9 +92,10 @@
                 </li>
                 <li class="profile">
                     <div class="profile-details">
-                        <img src="profile.jpg" alt="profileImg" runat="server" id="profileImg" />
+                        <img src="" alt="profileImg" runat="server" id="profileImg" />
                         <div class="name_job">
-                            <div class="name">Prem Shahi</div>
+                            <div class="name">
+                                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></div>
                             <div class="job">Web designer</div>
                         </div>
                     </div>

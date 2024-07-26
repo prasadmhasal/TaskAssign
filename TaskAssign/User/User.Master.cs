@@ -11,7 +11,8 @@ namespace TaskAssign.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Label1.Text = Session["User_name"].ToString();
+            profileImg.Src = Session["User_image"].ToString();
         }
     }
 }
