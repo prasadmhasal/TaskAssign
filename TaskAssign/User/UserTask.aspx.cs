@@ -102,13 +102,7 @@ namespace TaskAssign.User
             string q1 = $" Exec User_Task '{taskId}','{taskSolution}','{taskStatus}','{Tasksubmit_date}'";
             SqlCommand cmd = new SqlCommand(q1, conn);
             cmd.ExecuteNonQuery();
-
-           
-         
             GridView1.DataBind();
         }
-
-      
      }
 }
-
