@@ -82,11 +82,14 @@
     <Content Include="Admin\TaskReview.aspx" />
     <Content Include="Admin\UTask_Reject.aspx" />
     <Content Include="image\gold-medal.png" />
+    <Content Include="image\medal.png" />
+    <Content Include="image\silver-medal.png" />
     <Content Include="Login\login.aspx" />
     <Content Include="Login\Resgistration.aspx" />
     <Content Include="User\css\Style.css" />
     <Content Include="User\js\script.js" />
     <Content Include="User\leaderborad.aspx" />
+    <Content Include="User\performerweek.aspx" />
     <Content Include="User\Reject_Task.aspx" />
     <Content Include="User\Taskhistory.aspx" />
     <Content Include="User\Userhome.aspx" />
@@ -157,6 +160,13 @@
     </Compile>
     <Compile Include="User\leaderborad.aspx.designer.cs">
       <DependentUpon>leaderborad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\performerweek.aspx.cs">
+      <DependentUpon>performerweek.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\performerweek.aspx.designer.cs">
+      <DependentUpon>performerweek.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Reject_Task.aspx.cs">
       <DependentUpon>Reject_Task.aspx</DependentUpon>

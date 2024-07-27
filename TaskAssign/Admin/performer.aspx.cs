@@ -29,11 +29,10 @@ namespace TaskAssign.Admin
             DateTime fromDateParsed;
             DateTime toDateParsed;
 
-            // Convert dates from yyyy-MM-dd format to DateTime objects
             if (DateTime.TryParseExact(fromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out fromDateParsed) &&
                 DateTime.TryParseExact(toDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out toDateParsed))
             {
-                // Format dates as dd-MM-yyyy strings
+                
                 string fromDateString = fromDateParsed.ToString("dd-MM-yyyy");
                 string toDateString = toDateParsed.ToString("dd-MM-yyyy");
 
@@ -42,7 +41,6 @@ namespace TaskAssign.Admin
             }
             else
             {
-                // Handle invalid date input
                 Response.Write("<script>alert('Please enter valid dates in the format yyyy-MM-dd.')</script>");
             }
         }
@@ -68,6 +66,23 @@ namespace TaskAssign.Admin
         {
             dlCards.DataSource = dt;
             dlCards.DataBind();
+        }
+
+
+        public void push(object sender, EventArgs e)
+        {
+            string fromdate , todate , week  ;
+            fromdate = txtFromDate.Text;
+            todate = txtToDate.Text;
+            week = TextBox1.Text;
+
+            string w1 = $"exec performerweek '{fromdate}','{todate}','{week}'";
+            SqlCommand cmd  = new SqlCommand(w1, conn);
+            cmd.ExecuteNonQuery();
+
+            Response.Write("<script>alert('data insert succesfully')</script>");
+
+
         }
     }
 }

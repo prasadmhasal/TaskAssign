@@ -70,11 +70,13 @@
                     <span class="tooltip">Leaderbord</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/User/performerweek.aspx">
                         <i class="bx bx-cart-alt"></i>
-                        <span class="links_name">Order</span>
-                    </a>
-                    <span class="tooltip">Order</span>
+<span class="links_name">Performer week </span>
+                   
+                    </asp:HyperLink>
+                        
+                    <span class="tooltip">Performer week</span>
                 </li>
                 <li>
                     <a href="#">

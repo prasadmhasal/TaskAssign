@@ -8,10 +8,12 @@
         <div class="container py-5">
             <div class="row mx-0 justify-content-center">
                 <div class="col-lg-12">
-                    <div class="section-title text-center position-relative mb-5">
-                        <asp:TextBox ID="txtFromDate" runat="server" TextMode="Date"></asp:TextBox>
-                        <asp:TextBox ID="txtToDate" runat="server" TextMode="Date"></asp:TextBox>
-                        <asp:Button ID="Button2" runat="server" Text="Fetch Data" OnClick="btnFetchData_Click" />
+                    <div class="section-title text-center position-relative mb-5 d-flex">
+                        <asp:TextBox ID="txtFromDate" runat="server" TextMode="Date" CssClass="form-control mx-3"></asp:TextBox>
+                        <asp:TextBox ID="txtToDate" runat="server" TextMode="Date" CssClass="form-control mx-3"></asp:TextBox>
+                        <asp:TextBox ID="TextBox1" runat="server"  CssClass="form-control mx-3" ></asp:TextBox>
+                        <asp:Button ID="Button2" runat="server" Text="Fetch Data" OnClick="btnFetchData_Click"  CssClass="btn btn-primary mx-3" />
+                        <asp:Button ID="Button1" runat="server" Text="Push" OnClick="push"  CssClass="btn btn-primary mx-3" />
                     </div>
                     <asp:DataList ID="dlCards" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" CellPadding="15">
                         <ItemTemplate>
@@ -27,6 +29,9 @@
                             </div>
                         </ItemTemplate>
                     </asp:DataList>
+                </div>
+                <div>
+                    
                 </div>
             </div>
         </div>

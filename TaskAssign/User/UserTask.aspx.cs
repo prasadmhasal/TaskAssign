@@ -49,7 +49,7 @@ namespace TaskAssign.User
                 FileUpload fileUpload = (FileUpload)row.FindControl("FileUpload1");
                 string taskSolution = fileUpload.HasFile ? SaveFile(fileUpload) : string.Empty;
 
-               
+
                 string taskStatus = e.CommandName == "OnTime" ? "On Time" : "Late";
 
                 UpdateTaskStatus(taskId, taskSolution, taskStatus);
@@ -59,25 +59,38 @@ namespace TaskAssign.User
                 Label statusLabel = (Label)row.FindControl("StatusLabel");
 
                 if (onTimeButton != null)
-                    onTimeButton.Visible = false;
-
-                if (lateButton != null)
-                    lateButton.Visible = false;
-
-                if (statusLabel != null)
                 {
+                    onTimeButton.Enabled = false;
+                }
+                if (lateButton != null)
+                {
+                    lateButton.Enabled = false;
+                }
+                else 
+                {
+                    onTimeButton.Enabled = false;
+                    lateButton.Enabled = false;
+
                     statusLabel.Text = "Submitted";
                     statusLabel.ForeColor = System.Drawing.Color.Green;
                 }
 
-             
+
                 Response.Write($"<script>alert('Task ID: {taskId}, Status: {taskStatus}');</script>");
 
-                
+
                 GridView1.DataBind();
             }
         }
+        public bool IsButtonVisible(object button)
+        {
+            return button != null;
+        }
 
+        public bool CheckStatus(object status)
+        {
+            return status != null && (status.ToString() == "On Time" || status.ToString() == "Late");
+        }
         protected bool IsLate(object taskDate)
         {
             DateTime taskDateTime;

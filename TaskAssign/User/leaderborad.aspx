@@ -279,15 +279,24 @@ td {
         <asp:TemplateField HeaderText="Images">
             <ItemTemplate>
                 <!-- Medal Image: Visible only for the top-ranked user -->
-                <asp:Image ID="imgMedal" runat="server" 
-                           ImageUrl="~/image/gold-medal.png" 
-                           AlternateText="gold medal" 
-                           CssClass="gold-medal"
+                <asp:Image ID="imgMedal" runat="server"
+                    ImageUrl="~/image/gold-medal.png"
+                    AlternateText="gold medal"
+                    CssClass="gold-medal"
+                    Visible='<%# Convert.ToInt32(Eval("Rank")) == 1 %>' />
+                <asp:Image ID="Image1" runat="server"
+                    ImageUrl="~/image/silver-medal.png"
+                    AlternateText="gold medal"
+                    CssClass="gold-medal"
+                    Visible='<%# Convert.ToInt32(Eval("Rank")) == 2 %>' />
+                <asp:Image ID="Image2" runat="server"
+                    ImageUrl="~/image/medal.png"
+                    AlternateText="gold medal"
+                    CssClass="gold-medal"
+                    Visible='<%# Convert.ToInt32(Eval("Rank")) == 3 %>' />
 
-                           Visible='<%# Convert.ToInt32(Eval("Rank")) == 1 %>' />
-                
                 <!-- Profile Image: Always visible -->
-             
+
             </ItemTemplate>
         </asp:TemplateField>
 

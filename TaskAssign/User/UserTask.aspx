@@ -133,9 +133,9 @@
                         <asp:BoundField DataField="Task_date" HeaderText="Task Date" Visible="false"  />
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
-                                <asp:Button ID="OnTimeButton" runat="server" Text="On Time" CommandName="OnTime" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-sm btn-success gridview-button" Visible='<%# !IsLate(Eval("Task_date")) %>' />
+                                <asp:Button ID="OnTimeButton" runat="server" Text="On Time" CommandName="OnTime" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-sm btn-success gridview-button"  Visible='<%# !IsLate(Eval("Task_date")) %>' />
                                 <asp:Button ID="LateButton" runat="server" Text="Late" CommandName="Late" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-sm btn-danger gridview-button" Visible='<%# IsLate(Eval("Task_date")) %>' />
-                                <asp:Label ID="StatusLabel" runat="server" CssClass="text-success" Text="" />
+                                <asp:Label ID="StatusLabel" runat="server" CssClass="text-success" Text="Submit"    />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
