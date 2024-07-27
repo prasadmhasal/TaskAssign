@@ -63,11 +63,14 @@
           <span class="tooltip">UserTask_Reject</span>
         </li>
         <li>
-          <a href="#">
-            <i class="bx bx-folder"></i>
-            <span class="links_name">File Manager</span>
-          </a>
-          <span class="tooltip">Files</span>
+            <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/Admin/performer.aspx">
+                <i class="bx bx-folder"></i>
+<span class="links_name">Assign Performer</span>
+            </asp:HyperLink>
+          
+            
+         
+          <span class="tooltip">Assign Performer</span>
         </li>
         <li>
           <a href="#">
