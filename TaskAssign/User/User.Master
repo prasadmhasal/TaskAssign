@@ -31,10 +31,13 @@
                     <span class="tooltip">Search</span>
                 </li>
                 <li>
-                    <a href="#">
+
+                        <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/User/userdashbord.aspx">
+
                         <i class="bx bx-grid-alt"></i>
                         <span class="links_name">Dashboard</span>
-                    </a>
+                        </asp:HyperLink>
+                    
                     <span class="tooltip">Dashboard</span>
                 </li>
                 <li>

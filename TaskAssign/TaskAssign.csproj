@@ -84,6 +84,7 @@
     <Content Include="image\gold-medal.png" />
     <Content Include="image\medal.png" />
     <Content Include="image\silver-medal.png" />
+    <Content Include="image\studentbanner.jpg" />
     <Content Include="Login\login.aspx" />
     <Content Include="Login\Resgistration.aspx" />
     <Content Include="User\css\Style.css" />
@@ -92,6 +93,7 @@
     <Content Include="User\performerweek.aspx" />
     <Content Include="User\Reject_Task.aspx" />
     <Content Include="User\Taskhistory.aspx" />
+    <Content Include="User\userdashbord.aspx" />
     <Content Include="User\Userhome.aspx" />
     <Content Include="User\UserTask.aspx" />
     <Content Include="Web.config" />
@@ -188,6 +190,13 @@
     </Compile>
     <Compile Include="User\User.Master.designer.cs">
       <DependentUpon>User.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\userdashbord.aspx.cs">
+      <DependentUpon>userdashbord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\userdashbord.aspx.designer.cs">
+      <DependentUpon>userdashbord.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Userhome.aspx.cs">
       <DependentUpon>Userhome.aspx</DependentUpon>
